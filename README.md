@@ -13,7 +13,7 @@ The primary methodology involves **DBSCAN Clustering** to segment stations based
 
 ---
 
-## 📚 Data Source & Credit
+## Data Source & Credit
 
 The data utilized in this project is based on the **UrbanEV** open benchmark dataset. This comprehensive dataset, which details **Electric Vehicle (EV) charging demand** in Shenzhen, China, provides rich, high-resolution spatio-temporal features that are repurposed here to model dynamic demand in a dense urban mobility system.
 
@@ -25,7 +25,7 @@ The data utilized in this project is based on the **UrbanEV** open benchmark dat
 
 ---
 
-## 🚀 Execution Workflow (3 Sequential Stages)
+## Execution Workflow (3 Sequential Stages)
 
 The project must be executed in three mandatory stages. The output (trained models/scalers) of each stage is the required input for the next.
 
@@ -37,7 +37,7 @@ The project must be executed in three mandatory stages. The output (trained mode
 
 ---
 
-## 🛠️ Setup and Installation
+## Setup and Installation
 ### 2. Environment Setup
 
 1.  **Create and activate a virtual environment:**
@@ -55,7 +55,7 @@ The project must be executed in three mandatory stages. The output (trained mode
 
 ---
 
-## 💻 Running the Scripts
+## Running the Scripts
 
 Execute the scripts directly from the repository root in the following order:
 
