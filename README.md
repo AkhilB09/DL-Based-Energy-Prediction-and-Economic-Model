@@ -26,13 +26,6 @@ Export to Sheets
 1. Data Preparation
 All raw input data files must be placed within the data/raw/ directory, as defined in config.py.
 
-your-project-repo/
-└── data/
-    └── raw/
-        ├── information.csv
-        ├── volume.csv
-        ├── ... (all time series and static files)
-        └── SZ_districts.shp
 2. Environment Setup
 The project requires several deep learning and scientific libraries.
 
