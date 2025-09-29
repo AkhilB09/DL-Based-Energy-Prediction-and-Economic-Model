@@ -57,6 +57,3 @@ python transfer_learning.py
 # 3. Run the Final Economic Simulation and Dashboard Generation
 python simulator.py
 
-### 1. Data Preparation
-
-All raw input data files must be placed within the **`data/raw/`** director
