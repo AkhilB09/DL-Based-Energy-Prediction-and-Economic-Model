@@ -1,4 +1,4 @@
-# ML-Based-Energy-Prediction-and-Economic-Model
+# DL-Based-Energy-Prediction-and-Economic-Model
 Project Overview
 This repository houses a comprehensive predictive optimization system designed for a bike-sharing network. The framework utilizes Time Series Forecasting (LSTM) integrated with a Micro-Economic Simulation to determine optimal, profit-maximizing dynamic pricing strategies for individual stations.
 
