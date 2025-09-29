@@ -13,6 +13,18 @@ The primary methodology involves **DBSCAN Clustering** to segment stations based
 
 ---
 
+## 📚 Data Source & Credit
+
+The data utilized in this project is based on the **UrbanEV** open benchmark dataset. This comprehensive dataset, which details **Electric Vehicle (EV) charging demand** in Shenzhen, China, provides rich, high-resolution spatio-temporal features that are repurposed here to model dynamic demand in a dense urban mobility system.
+
+**Please cite the original source if publishing or presenting this work:**
+
+> The dataset used is the **UrbanEV: An Open Benchmark Dataset for Urban Electric Vehicle Charging Demand Prediction**
+>
+> **Original Source:** [https://github.com/IntelligentSystemsLab/UrbanEV](https://github.com/IntelligentSystemsLab/UrbanEV)
+
+---
+
 ## 🚀 Execution Workflow (3 Sequential Stages)
 
 The project must be executed in three mandatory stages. The output (trained models/scalers) of each stage is the required input for the next.
