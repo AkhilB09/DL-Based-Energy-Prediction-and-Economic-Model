@@ -1,0 +1,18 @@
+# requirements.txt
+pandas
+numpy
+torch
+torch_geometric
+torch_sparse
+torch_scatter
+scikit-learn
+matplotlib
+xlrd
+optuna
+geopandas
+scipy # For the optimization functions in the simulator
+seaborn # For visualizations
+
+# Note: For torch_geometric dependencies (like torch-sparse, torch-scatter), 
+# you all may need to manually install based on their specific CUDA version 
+# as per notebook.
