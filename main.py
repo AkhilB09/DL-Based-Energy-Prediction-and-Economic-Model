@@ -10,11 +10,11 @@ import torch
 from sklearn.model_selection import TimeSeriesSplit
 import joblib
 
-# Import all necessary components
+#mport
 from config import * from utils import SimpleLSTM, TimeSeriesDataset, create_sequences, load_and_prepare_data, \
                   calculate_multistep_metrics, train_final_model, generate_reports, generate_visualizations
 
-# --- Environment Setup ---
+# Environmen
 for d in [MODELS_DIR, VISUALIZATIONS_DIR, REPORTS_DIR]:
     if not os.path.exists(d): os.makedirs(d)
     
@@ -30,14 +30,10 @@ warnings.filterwarnings('ignore')
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"Using device: {device}")
 
-# ==============================================================================
-# --- MAIN EXECUTION WORKFLOW ---
-# ==============================================================================
+
 def main():
-    # --- STAGE 1: Load Data and Find Clusters (DO NOT INCLUDE LAG FEATURES) ---
     X_raw, Y_raw, cluster_map, static_info_df, time_df, station_profiles, cluster_labels = load_and_prepare_data(include_lag_features=False)
 
-    # --- STAGE 2: Final Training Run with Complete Hyperparameters ---
     print(f"\n{'='*70}\n--- STAGE 2: Running Final Training with Tuned Hyperparameters ---\n{'='*70}")
 
     experiments = [
@@ -72,12 +68,12 @@ def main():
                 if len(station_indices) == 0: continue
                 group_name = f"Cluster {group_id}" if use_clustering and group_id != 'Global' else "Global"
 
-                # A. Prepare Data
+               
                 X_group, Y_group = X_raw[:, station_indices, :], Y_raw[:, station_indices, :]
                 X_tv, Y_tv = X_group[train_val_indices], Y_group[train_val_indices]
                 X_test, Y_test = X_group[test_indices], Y_group[test_indices]
                 
-                # B. Scaling and Sequence Creation
+                
                 scaler_X = joblib.dump(StandardScaler().fit(X_tv.reshape(-1, X_tv.shape[-1])),
                                         os.path.join(MODELS_DIR, f"scaler_X_{exp['name'].replace(' ', '_')}_group_{group_id}_fold_{fold_idx}.joblib"))
                 scaler_Y = joblib.dump(StandardScaler().fit(Y_tv.reshape(-1, 1)),
@@ -100,7 +96,6 @@ def main():
                 X_val_r, Y_val_r = reshape_data_for_training(X_val_seq, Y_val_seq)
                 X_test_r_reshaped, _ = reshape_data_for_training(X_test_seq, Y_test_seq_actuals)
 
-                # C. Training and Prediction
                 params_for_group = TUNED_PARAMS_PER_CLUSTER.get(group_id, TUNED_PARAMS_PER_CLUSTER['default'])
                 print(f"  -> Using params for {group_name}: {params_for_group}")
                 
@@ -124,11 +119,11 @@ def main():
                 num_seq, num_stations_in_group = X_test_seq.shape[0], X_test_seq.shape[2]
                 preds_reshaped = preds_u.reshape(num_seq, num_stations_in_group, OUTPUT_SEQ_LEN, 1).transpose(0, 2, 1, 3)
                 
-                # D. Store predictions
+               
                 fold_predictions[:, :, station_indices, :] = preds_reshaped
                 fold_actuals[:, :, station_indices, :] = Y_test_seq_actuals
 
-            # E. Calculate Fold Metrics
+            
             multistep_metrics = calculate_multistep_metrics(fold_actuals, fold_predictions)
             fold_results_dict[fold_idx + 1] = multistep_metrics
             
@@ -141,11 +136,12 @@ def main():
 
         all_results[exp['name']] = fold_results_dict
 
-    # --- STAGE 3: Reporting and Visualization ---
+    
     generate_reports(all_results, cluster_map, station_profiles, cluster_labels)
     generate_visualizations(final_fold_predictions, static_info_df, cluster_labels, station_profiles)
 
     print("\n\n✅ --- Definitive Training Pipeline Finished Successfully --- ✅")
 
 if __name__ == '__main__':
+
     main()
